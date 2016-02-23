@@ -20,9 +20,17 @@ class ListItem extends React.Component {
 	}
 
 	render() {
-		var itemClass = this.props.completed ? 'item completed' : 'item'
+
+		var marked = {
+			textDecoration: 'line-Through'
+		}
+
+		var notMarked = {
+			textDecoration: 'none'
+		}
+
 		return (
-			<div>
+			<div style={this.props.done ? marked : notMarked}>
 				<p>{this.props.itemname}</p>
 				<button onClick={this.destroy.bind(this)}>Delete</button>
 				<button onClick={this.markDone.bind(this)}>Mark done</button>

@@ -1,15 +1,26 @@
 import React from 'react';
 import ListInput from './listInput';
 import ListItem from './listItem';
+import jQuery from 'jquery';
 
 class ToDoList extends React.Component {
 
 	constructor(){
 		super();
 		this.state = {
-			items: ["Call my mom", "Do the groceries", "Find my cat", "Finish my homework"]
+			items: ["Call my mom", "Do the groceries", "Find my cat", "Finish my homework"],
 		};
 	}
+
+    // componentDidMount(){
+    //      // the jQuery.get callback will create a new context (this), so we need to remember what 'this'
+    //      var self = this;
+    //      jQuery.get("https://apitask.herokuapp.com/tasks.json", function(data){
+    //          self.setState({
+    //              items: data.tasks
+    //          });
+    //      });
+    // }
 
 	onChangeDestroy(item){
 
@@ -20,8 +31,7 @@ class ToDoList extends React.Component {
 		});
 	}
 
-	onMarkDone(index){
-		console.log(this.state.items(index);
+	onMarkDone(itemname){
 	}
 
 	renderItems(item){
