@@ -3,24 +3,37 @@ import ListInput from './listInput';
 import ListItem from './listItem';
 import jQuery from 'jquery';
 
+
 class ToDoList extends React.Component {
 
 	constructor(){
+		
 		super();
 		this.state = {
-			items: ["Call my mom", "Do the groceries", "Find my cat", "Finish my homework"],
+			items: [{
+        		done: false,
+        		description: "Call my mom"
+      			}, {
+        		done: false,
+        		description: "Do the groceries"
+      			}, {
+        		done: false,
+        		description: "Find my cat"
+      			}, {
+        		done: false,
+        		description: "Finish my homework"
+      		}]
 		};
 	}
 
-    // componentDidMount(){
-    //      // the jQuery.get callback will create a new context (this), so we need to remember what 'this'
-    //      var self = this;
-    //      jQuery.get("https://apitask.herokuapp.com/tasks.json", function(data){
-    //          self.setState({
-    //              items: data.tasks
-    //          });
-    //      });
-    // }
+	componentDidMount() {
+    	let component = this;
+    	jQuery.getJSON("https://apitask.herokuapp.com/tasks.json", function(data){
+        	component.setState({
+            	items: data.tasks
+        	})
+    	}); 
+  	}
 
 	onChangeDestroy(item){
 
@@ -31,15 +44,30 @@ class ToDoList extends React.Component {
 		});
 	}
 
-	onMarkDone(itemname){
+	onMarkDone(val){
+		var items = this.state.items;
+ 		var item = this.state.items.find(function(element) {
+      		return element.description == val;
+    	});
+   		
+    	if(item){
+      		item.done = !item.done;
+    	}
+
+    	this.setState({
+      		items: this.state.items
+    	});
 	}
 
 	renderItems(item){
-		return <ListItem itemname={item} onChange={this.onChangeDestroy.bind(this)} onMark={this.onMarkDone.bind(this)}/>;
+		return <ListItem itemname={item.description} done={item.done} onChange={this.onChangeDestroy.bind(this)} onMark={this.onMarkDone.bind(this)} key={item.description}/>;
 	}
 
 	onAddListItem(item) {
-		var newItem = item;
+		var newItem = {
+      		done: false,
+      		description: item
+    	};
 		var newItems = this.state.items.concat(newItem);
 		this.setState({
 			items: newItems
@@ -48,13 +76,13 @@ class ToDoList extends React.Component {
 
 	render() {
         return (
-        	<div>
-        	<h1>My First To Do App</h1>
+        	<section>
+            	<h1>To Do</h1>
             	<ListInput onSubmit={this.onAddListItem.bind(this)} />
-            	<div>{this.state.items.map(this.renderItems.bind(this))}</div>
-            </div>
+               	{this.state.items.map(this.renderItems.bind(this))}
+          	</section>
         );
-	}
+    }
 }
 
 export default ToDoList;

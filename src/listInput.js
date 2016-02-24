@@ -10,10 +10,12 @@ class ListInput extends React.Component {
 
 	render() {
 		return (
+			<div>
 				<form onSubmit={this.onSubmitForm.bind(this)}>
-				<input ref="todoItem" placeholder="I need to..." />
-				<button>Add</button>
+					<input ref="todoItem" />
+					<button>Add</button>
 				</form>
+			</div>
 		);
 	}
 }
