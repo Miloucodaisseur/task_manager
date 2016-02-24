@@ -1,23 +1,29 @@
 import React from 'react';
+import jQuery from 'jquery';
 
 class ListInput extends React.Component {
+	constructor() {
+		super();
+	}
 
-	createTodo(event) {
+	onSubmitForm(event) {
 	    event.preventDefault();
 
 	    let component = this;
-	    let title = this.refs.newTodoInput.value;
-	    let newTodo = {
+	    let description = this.refs.newTodoInput.value;
+	    let newTask = {
 	     	id: null,
-	      	title: title,
-	      	completed: false
+	      	description: description,
+	      	done: false
 	    };
+
+	    console.log(newTask);
 
 	    jQuery.ajax({
 	      	type: "POST",
-	      	url: "https://afternoon-atoll-31464.herokuapp.com/todos.json",
+	      	url: "https://apitask.herokuapp.com/tasks.json",
 	      	data: JSON.stringify({
-	          	todo: newTodo
+	          	task: newTask
 	      	}),
 	      	contentType: "application/json",
 	      	dataType: "json"
@@ -33,18 +39,12 @@ class ListInput extends React.Component {
 	    });
 	}
 
-	onSubmitForm(event){
-		event.preventDefault();
-
-		this.props.onSubmit(this.refs.todoItem.value);
-	}
-
 	render() {
 		return (
 			<div>
 				<form onSubmit={this.onSubmitForm.bind(this)}>
-					<input ref="todoItem" />
-					<button>Add</button>
+					<input ref="newTodoInput" />
+					<button type="submit">Add</button>
 				</form>
 			</div>
 		);
