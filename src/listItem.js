@@ -1,30 +1,25 @@
 import React from 'react';
 
 class ListItem extends React.Component {
-	constructor() {
-		super();
-
-		this.state = {
-			items: []
-		};
-	}
-
-// passes the selected itemname to the app.js controller and calls the onchange function there
+	
 	destroy() {
 		this.props.onChange(this.props.itemname);
 	}
 
-// passes the selected itemname to the app.js controller and calls the onMarkDone function
-	markDone() {
+	handleClick() {
 		this.props.onMark(this.props.itemname);
 	}
 
 	render() {
+
+		var marked = { textDecoration: 'line-Through' };
+ 		var notMarked = { textDecoration: 'none'}
+
 		return (
 			<div>
-				<p>{this.props.itemname}</p>
+				<p style={this.props.done ? marked : notMarked}>{this.props.itemname}</p>
 				<button onClick={this.destroy.bind(this)}>Delete</button>
-				<button onClick={this.markDone.bind(this)}>Mark done</button>
+				<button onClick={this.handleClick.bind(this)}>Mark done</button>
 			</div>
 		);
 	}

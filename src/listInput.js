@@ -1,9 +1,6 @@
 import React from 'react';
 
 class ListInput extends React.Component {
-	constructor() {
-		super();
-	}
 
 	onSubmitForm(event){
 		event.preventDefault();
@@ -13,12 +10,12 @@ class ListInput extends React.Component {
 
 	render() {
 		return (
-			<section>
+			<div>
 				<form onSubmit={this.onSubmitForm.bind(this)}>
-				<input ref="todoItem" />
-				<button>Add</button>
+					<input ref="todoItem" />
+					<button>Add</button>
 				</form>
-			</section>
+			</div>
 		);
 	}
 }
