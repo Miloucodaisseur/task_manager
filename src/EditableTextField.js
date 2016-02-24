@@ -13,9 +13,11 @@ class EditableTextField extends React.Component {
   handleKeyPress(event){
   	if (event.key === "Enter") {
 
+  		// de nieuwe waarde van de input wordt doorgegeven naar de parent
   		var newInput = this.refs.input.value;
   		this.props.onChange(newInput);
 
+  		// edit functie wordt weer uitgezet
   		this.setState({
   			editing: false
   		});
@@ -23,9 +25,13 @@ class EditableTextField extends React.Component {
   }
 
   edit(event){
-  	this.setState({
-  		editing: true
-  	});  	
+
+  	// only if the task is not marked, the text field changes 
+  	if (this.props.done == false){
+	  	this.setState({
+	  		editing: true
+	  	});  	
+	}
   }
 
   render() {

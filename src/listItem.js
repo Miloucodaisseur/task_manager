@@ -140,7 +140,7 @@ class ListItem extends React.Component {
 		return (
 			<div>
 				<p style={this.state.done ? complete : not_complete}>
-					<EditableTextField value={this.state.description} onChange={this.changedText.bind(this)} />
+					<EditableTextField done={this.state.done} value={this.state.description} onChange={this.changedText.bind(this)} />
 				</p>
 				<button onClick={this.destroy.bind(this)}>Delete</button>
 				<button onClick={this.complete.bind(this)}>Mark as complete</button>
