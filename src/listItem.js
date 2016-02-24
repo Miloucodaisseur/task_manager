@@ -13,7 +13,7 @@ class ListItem extends React.Component {
 	render() {
 
 		var marked = { textDecoration: 'line-Through' };
- 		var notMarked = { textDecoration: 'none'}
+ 		var notMarked = { textDecoration: 'none'};
 
 		return (
 			<div>
