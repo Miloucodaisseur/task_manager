@@ -1,6 +1,7 @@
 import React from 'react';
 import jQuery from 'jquery';
 import Project from './Project';
+import ProjectInput from './ProjectInput';
 
 class ProjectList extends React.Component {
 
@@ -29,7 +30,8 @@ class ProjectList extends React.Component {
       return (
         <div>
           <h1>Project List</h1>
-          {console.log(this.state.projects)}
+          <ProjectInput onChange={this.reload.bind(this)} />
+          
           {this.state.projects.map(function(project, i) {
             return(
               <Project key={project.id} id={project.id} title={project.title} description={project.description} />
