@@ -2,7 +2,28 @@ import jQuery from 'jquery';
 
 class Local {
 	constructor(){
-		this.tasks = [];		
+		this.tasks = [
+		{ 
+			id: 1,
+			description: "Hello",
+			done: true
+		},{
+			
+			id: 2,
+			description: "Hello again!",	
+			done: false
+		},{
+			
+			id: 3,
+			description: "Hello again!",	
+			done: false
+		},{
+			
+			id: 4,
+			description: "Hello again 4!",	
+			done: false
+
+			}];	
 	}
 
 	get(onDone) {
@@ -10,6 +31,12 @@ class Local {
 		onDone( response );
 	}
 
+	// still not working, needs to be fixed
+	post(task, onDone, onFail) {
+		var newTasks = this.tasks.concat(task);
+		task = newTasks;
+		onDone({ task: newTasks});
+	}
 }
 
 
@@ -72,7 +99,7 @@ class Remote {
 
 // for local database use "var model = new Local", for remote database use "var model = new Remote"
 
-// var model = new Remote;
-var model = new Local;
+var model = new Remote;
+// var model = new Local;
 
 export default model;

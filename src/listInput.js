@@ -24,6 +24,8 @@ class ListInput extends React.Component {
 	    };
 
 	    model.post(newTask, onDone, onFail);
+	    this.setState({
+	    })
 	}
 
 	render() {
