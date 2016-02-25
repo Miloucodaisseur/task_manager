@@ -16,7 +16,24 @@ class ProjectInput extends React.Component {
       title: title
     };
 
-    console.log(newProject);
+    jQuery.ajax({
+      type: "POST",
+      url: "https://projectapitask.herokuapp.com/projects.json",
+      data: JSON.stringify({
+          project: newProject
+      }),
+      contentType: "application/json",
+      dataType: "json"
+    })
+
+    .done(function(data) {
+      component.props.onChange();
+      component.refs.newProjectInput.value = "";
+    })
+
+    .fail(function(error) {
+      console.log(error);
+    });
   }
 
 
