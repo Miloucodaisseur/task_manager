@@ -60,28 +60,17 @@ class ListItem extends React.Component {
 	    }
 
 	    // merging the old and the new
-		let newState = jQuery.extend(oldState, changedState);
-
-	    this.setState(newState);
-
-	    jQuery.ajax({
-	      	type: "PUT",
-	      	url: "https://apitask.herokuapp.com/tasks/" + this.state.id, 
-	      	data: JSON.stringify({
-	          	task: newState
-	      	}),
-	      	contentType: "application/json",
-	      	dataType: "json"
-	    })
+		let updateTask = jQuery.extend(oldState, changedState);
 	    
-	    .done(function(data) {
+	    function onDone(data) {
 	        component.props.complete();
-	    })
+	    }
 
-	    .fail(function(error) {
+	    function onFail(error) {
 	        console.log(error);
-	    });
+	    }
 
+	    model.update(updateTask, onDone, onFail);
 	}
 
 	changedText(newInput) {
@@ -103,28 +92,21 @@ class ListItem extends React.Component {
 	    }
 
 	    // merging the old and the new
-		let newState = jQuery.extend(oldState, changedState);
+		let updateTask = jQuery.extend(oldState, changedState);
 
-	    this.setState(newState);
-
-	    jQuery.ajax({
-	      	type: "PUT",
-	      	url: "https://apitask.herokuapp.com/tasks/" + this.state.id, 
-	      	data: JSON.stringify({
-	          	task: newState
-	      	}),
-	      	contentType: "application/json",
-	      	dataType: "json"
-	    })
-	    
-	    .done(function(data) {
+	    function onDone(data) {
 	        component.props.complete();
-	    })
+	    }
 
-	    .fail(function(error) {
+	    function onFail(error) {
 	        console.log(error);
-	    });
+	    }
 
+	    model.update(updateTask, onDone, onFail);
+	    
+		this.setState({
+			description: newInput
+		})
 	}
 
 	render() {

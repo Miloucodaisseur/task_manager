@@ -14,7 +14,7 @@ class ToDoList extends React.Component {
   		  };
   	}
 
-    reloadList(event) {
+    reload(event) {
         let component = this;
 
         function onDone (data){
@@ -24,22 +24,21 @@ class ToDoList extends React.Component {
         }
 
         model.get(onDone);
-        console.log(model);
     }
 
     componentDidMount() {
-        this.reloadList();
+        this.reload();
   	}
 
   	render() {
         return (
           	<section>
               	<h1>To do:</h1>
-              	<ListInput onChange={this.reloadList.bind(this)} />
+              	<ListInput onChange={this.reload.bind(this)} />
 
                 {this.state.tasks.map(function(task, i) {
                     return(
-                        <ListItem key={task.id} id={task.id} description={task.description} done={task.done} destroy={this.reloadList.bind(this)} complete={this.reloadList.bind(this)} />
+                        <ListItem key={task.id} id={task.id} description={task.description} done={task.done} destroy={this.reload.bind(this)} complete={this.reload.bind(this)} />
                     );
                 }, this)}
             </section>

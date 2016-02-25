@@ -1,9 +1,26 @@
 import jQuery from 'jquery';
 
-class TasksRemote {
+class Local {
+	constructor(){
+		this.tasks = [];		
+	}
+
+	get(onDone) {
+		var response = {tasks: this.tasks};
+		onDone( response );
+	}
+
+}
+
+
+class Remote {
 
 	constructor() {
 		this.server = "https://apitask.herokuapp.com/";
+	}
+	    
+	get(onDone){
+		jQuery.getJSON( this.server + "tasks.json", onDone);
 	}
 
 	post(task, onDone, onFail) {
@@ -34,25 +51,28 @@ class TasksRemote {
 	    };
 
 	    jQuery.ajax(request).done(onDone).fail(onFail);
-
 	}
-	    
 
-	get(onDone){
-		jQuery.getJSON( this.server + "tasks.json", onDone);
+	update(task, onDone, onFail) {
+			
+		var data = JSON.stringify({task: task});
+
+		let request = {
+	      	type: "PUT",
+	      	url: this.server + "tasks/" + task.id,
+	      	data: data,
+	      	contentType: "application/json",
+	      	dataType: "json"
+	    };
+
+	   	jQuery.ajax(request).done(onDone).fail(onFail);
 	}
 
 }
 
+// for local database use "var model = new Local", for remote database use "var model = new Remote"
 
-class Model {
-
-	constructor(){
-		this.tasks = new TasksRemote;
-	}
-}
-
-var model = new TasksRemote;
-
+// var model = new Remote;
+var model = new Local;
 
 export default model;
