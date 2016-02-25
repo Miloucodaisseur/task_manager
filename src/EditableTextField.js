@@ -23,9 +23,11 @@ class EditableTextField extends React.Component {
   }
 
   edit(event){
-  	this.setState({
-  		editing: true
-  	});  	
+    if (this.props.done === false) {
+      this.setState({
+    		editing: true
+    	});
+    }
   }
 
   render() {
