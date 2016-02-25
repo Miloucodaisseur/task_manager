@@ -1,11 +1,23 @@
 import React from 'react';
-import ProjectList from './ProjectList'
+import { Link } from 'react-router';
+// import ProjectList from './ProjectList';
+
 
 class App extends React.Component {
 
 	render() {
         return (
-          <ProjectList />
+					<div className="container">
+          
+            <nav className="main">
+              <ul>
+                <li><Link to="/">Home</Link></li>
+              </ul>
+            </nav>
+
+
+            {this.props.children}
+          </div>
         );
     }
 }
