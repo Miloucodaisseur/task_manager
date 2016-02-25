@@ -1,11 +1,11 @@
 import React from 'react';
-import ToDoList from './toDoList'
+import ProjectList from './ProjectList'
 
 class App extends React.Component {
 
 	render() {
         return (
-          <ToDoList />
+          <ProjectList />
         );
     }
 }
