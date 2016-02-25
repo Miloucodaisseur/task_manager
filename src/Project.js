@@ -17,11 +17,35 @@ class Project extends React.Component {
       })
     }
 
+    destroy(event){
+      let component = this;
+      let destroyedProject = this.state.id;
+
+      jQuery.ajax({
+        type: "DELETE",
+        url: "http://projectapitask.herokuapp.com/projects/" + destroyedProject,
+        data: JSON.stringify({
+          project: destroyedProject   
+        }),
+        contentType: "application/json",
+        dataType: "json"
+      })
+
+      .done(function(data){
+        component.props.destroyed();
+      })
+
+      .fail(function(error){
+        console.log(error);
+      })
+    }
+
     render() {
 
       return (
         <div>
-        {this.state.title}
+          {this.state.title}
+          <button onClick={this.destroy.bind(this)}>Delete Project</button>
         </div>
       );
     }

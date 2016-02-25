@@ -25,7 +25,6 @@ class ProjectList extends React.Component {
       this.reload();
     }
 
-
     render() {
       return (
         <div>
@@ -34,9 +33,9 @@ class ProjectList extends React.Component {
           
           {this.state.projects.map(function(project, i) {
             return(
-              <Project key={project.id} id={project.id} title={project.title} description={project.description} />
+              <Project key={project.id} id={project.id} title={project.title} description={project.description} destroyed={this.reload.bind(this)} />
             );
-          })}
+          },this)}
         </div>
       );
     }
