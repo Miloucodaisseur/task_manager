@@ -25,14 +25,14 @@ class ListItem extends React.Component {
 
 	    jQuery.ajax({
 	      	type: "DELETE",
-	      	url: "https://apitask.herokuapp.com/tasks/" + this.state.id, 
+	      	url: "https://apitask.herokuapp.com/tasks/" + this.state.id,
 	      	data: JSON.stringify({
 	          	task: deleteTask
 	      	}),
 	      	contentType: "application/json",
 	      	dataType: "json"
 	    })
-	    
+
 	    .done(function(data) {
 	        component.props.destroy();
 	    })
@@ -56,7 +56,7 @@ class ListItem extends React.Component {
 			updatedAt: this.state.updatedAt
 	    }
 
-	   	// this toggles the state.done 
+	   	// this toggles the state.done
 		this.state.done = !this.state.done;
 
 		// capturing the changed state
@@ -71,14 +71,14 @@ class ListItem extends React.Component {
 
 	    jQuery.ajax({
 	      	type: "PUT",
-	      	url: "https://apitask.herokuapp.com/tasks/" + this.state.id, 
+	      	url: "https://apitask.herokuapp.com/tasks/" + this.state.id,
 	      	data: JSON.stringify({
 	          	task: newState
 	      	}),
 	      	contentType: "application/json",
 	      	dataType: "json"
 	    })
-	    
+
 	    .done(function(data) {
 	        component.props.complete();
 	    })
@@ -114,14 +114,14 @@ class ListItem extends React.Component {
 
 	    jQuery.ajax({
 	      	type: "PUT",
-	      	url: "https://apitask.herokuapp.com/tasks/" + this.state.id, 
+	      	url: "https://apitask.herokuapp.com/tasks/" + this.state.id,
 	      	data: JSON.stringify({
 	          	task: newState
 	      	}),
 	      	contentType: "application/json",
 	      	dataType: "json"
 	    })
-	    
+
 	    .done(function(data) {
 	        component.props.complete();
 	    })
@@ -140,7 +140,7 @@ class ListItem extends React.Component {
 		return (
 			<div>
 				<p style={this.state.done ? complete : not_complete}>
-					<EditableTextField value={this.state.description} onChange={this.changedText.bind(this)} />
+					<EditableTextField value={this.state.description} done={this.state.done} onChange={this.changedText.bind(this)} />
 				</p>
 				<button onClick={this.destroy.bind(this)}>Delete</button>
 				<button onClick={this.complete.bind(this)}>Mark as complete</button>
