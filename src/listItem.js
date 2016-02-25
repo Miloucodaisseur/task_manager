@@ -1,6 +1,7 @@
 import React from 'react';
 import jQuery from 'jquery';
 import EditableTextField from './EditableTextField';
+import model from './Model';
 
 class ListItem extends React.Component {
 	constructor(){
@@ -18,30 +19,24 @@ class ListItem extends React.Component {
 		})
 	}
 
+
 	destroy(event) {
 
 	    let component = this;
 	    let deleteTask = { id: this.state.id };
 
-	    jQuery.ajax({
-	      	type: "DELETE",
-	      	url: "https://apitask.herokuapp.com/tasks/" + this.state.id, 
-	      	data: JSON.stringify({
-	          	task: deleteTask
-	      	}),
-	      	contentType: "application/json",
-	      	dataType: "json"
-	    })
-	    
-	    .done(function(data) {
+	    console.log(deleteTask);
+	    function onDone(data) {
 	        component.props.destroy();
-	    })
+	    }
 
-	    .fail(function(error) {
+	    function onFail(error) {
 	        console.log(error);
-	    });
+	    };
 
+	    model.destroy(deleteTask, onDone, onFail);	    
 	}
+
 
 	complete(event) {
 

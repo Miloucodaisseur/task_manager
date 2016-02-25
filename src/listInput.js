@@ -1,5 +1,6 @@
 import React from 'react';
 import jQuery from 'jquery';
+import model from './Model';
 
 class ListInput extends React.Component {
 	constructor() {
@@ -8,35 +9,21 @@ class ListInput extends React.Component {
 
 	onSubmitForm(event) {
 	    event.preventDefault();
+		let component = this;
 
-	    let component = this;
 	    let description = this.refs.newTodoInput.value;
-	    let newTask = {
-	     	id: null,
-	      	description: description,
-	      	done: false
-	    };
+	    let newTask = { id: null, description: description, done: false };
 
-	    console.log(newTask);
-
-	    jQuery.ajax({
-	      	type: "POST",
-	      	url: "https://apitask.herokuapp.com/tasks.json",
-	      	data: JSON.stringify({
-	          	task: newTask
-	      	}),
-	      	contentType: "application/json",
-	      	dataType: "json"
-	    })
-	    
-	    .done(function(data) {
+	   	function onDone(data) {
 	        component.props.onChange();
 	        component.refs.newTodoInput.value = "";
-	    })
+	    };
 
-	    .fail(function(error) {
+	   	function onFail(error) {
 	        console.log(error);
-	    });
+	    };
+
+	    model.post(newTask, onDone, onFail);
 	}
 
 	render() {

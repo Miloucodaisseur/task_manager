@@ -2,6 +2,7 @@ import React from 'react';
 import ListInput from './listInput';
 import ListItem from './listItem';
 import jQuery from 'jquery';
+import model from './Model';
 
 
 class ToDoList extends React.Component {
@@ -15,11 +16,15 @@ class ToDoList extends React.Component {
 
     reloadList(event) {
         let component = this;
-        jQuery.getJSON("https://apitask.herokuapp.com/tasks.json", function(data){
+
+        function onDone (data){
             component.setState({
                 tasks: data.tasks
             });
-        }); 
+        }
+
+        model.get(onDone);
+        console.log(model);
     }
 
     componentDidMount() {
