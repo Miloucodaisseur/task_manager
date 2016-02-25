@@ -10,10 +10,12 @@ class ProjectInput extends React.Component {
     event.preventDefault();
 
     let component = this;
-    let title = this.refs.newProjectInput.value;
+    let title = this.refs.newProjectTitle.value;
+    let description = this.refs.newProjectDescription.value;
     let newProject = {
       id: null,
-      title: title
+      title: title,
+      description: description
     };
 
     jQuery.ajax({
@@ -28,7 +30,8 @@ class ProjectInput extends React.Component {
 
     .done(function(data) {
       component.props.onChange();
-      component.refs.newProjectInput.value = "";
+      component.refs.newProjectTitle.value = "";
+      component.refs.newProjectDescription.value = "";
     })
 
     .fail(function(error) {
@@ -42,7 +45,8 @@ class ProjectInput extends React.Component {
     return (
       <div>
         <form onSubmit={this.onSubmitForm.bind(this)}>
-          <input ref="newProjectInput" />
+          <input ref="newProjectTitle" placeholder="Title"/>
+          <input ref="newProjectDescription" placeholder="Description"/>
           <button type="submit">Add</button>
         </form>
       </div>

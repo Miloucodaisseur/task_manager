@@ -28,7 +28,7 @@ class ListInput extends React.Component {
 	      	contentType: "application/json",
 	      	dataType: "json"
 	    })
-	    
+
 	    .done(function(data) {
 	        component.props.onChange();
 	        component.refs.newTodoInput.value = "";
