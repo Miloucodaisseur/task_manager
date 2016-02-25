@@ -1,5 +1,6 @@
 import React from 'react';
 import jQuery from 'jquery';
+import { Link } from 'react-router';
 
 class Project extends React.Component {
     constructor (){
@@ -21,7 +22,8 @@ class Project extends React.Component {
 
       return (
         <div>
-        {this.state.title}
+        <h1>{this.state.title}</h1>
+        <h2>{this.state.description}</h2>
         </div>
       );
     }
