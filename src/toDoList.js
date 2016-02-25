@@ -1,6 +1,6 @@
 import React from 'react';
-import ListInput from './listInput';
-import ListItem from './listItem';
+import ListInput from './ListInput';
+import ListItem from './ListItem';
 import jQuery from 'jquery';
 
 
