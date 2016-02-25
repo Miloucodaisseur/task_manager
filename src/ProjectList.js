@@ -1,13 +1,14 @@
 import React from 'react';
 import jQuery from 'jquery';
-import Project from './Project';
-import ProjectInput from './ProjectInput';
 import { Link } from 'react-router';
+import ProjectItem from './ProjectItem';
+import ProjectInput from './ProjectInput';
 
 class ProjectList extends React.Component {
 
     constructor(){
       super();
+
       this.state = {
         projects: []
       };
@@ -26,7 +27,6 @@ class ProjectList extends React.Component {
       this.reload();
     }
 
-
     render() {
       return (
         <div>
@@ -35,10 +35,7 @@ class ProjectList extends React.Component {
 
           {this.state.projects.map(function(project, i) {
             return(
-              <div>
-                <Project key={project.id} id={project.id} title={project.title} description={project.description} />
-                <Link to={`/project/${projectId}`}>{project.title}</Link>
-              </div>
+                <ProjectItem key={project.id} id={project.id} title={project.title} description={project.description} />
             );
           })}
         </div>

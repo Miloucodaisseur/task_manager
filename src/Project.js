@@ -3,48 +3,49 @@ import jQuery from 'jquery';
 import { Link } from 'react-router';
 
 class Project extends React.Component {
-    constructor (){
-      super();
-    }
+  constructor (){
+    super();
+  }
 
-    componentDidMount() {
-      this.setState({
-        key: this.props.id,
-        id: this.props.id,
-        title: this.props.title,
-        description: this.props.description,
-        createdAt: this.props.createdAt,
-        updatedAt: this.props.updatedAt
-      })
+  componentDidMount() {
+    this.setState({
+      key: this.props.id,
+      id: this.props.id,
+      title: this.props.title,
+      description: this.props.description,
+      createdAt: this.props.createdAt,
+      updatedAt: this.props.updatedAt
+    })
 
-      this.findProject();
-    }
+    this.findProject();
+  }
 
-    findProject(){
-      let projectId = this.state.id;
-      let component = this;
+  findProject(){
+    let projectId = this.state.id;
+    let component = this;
 
-      jQuery.getJSON("https://afternoon-atoll-31464.herokuapp.com/projects/" + projectId + ".json", function(data) {
-        console.log(data);
+    jQuery.getJSON("https://afternoon-atoll-31464.herokuapp.com/projects/" + projectId + ".json", function(data) {
 
       component.setState({
-        project: data.project
+        key: data.project.id,
+        id: data.project.id,
+        title: data.project.title,
+        description: data.project.description,
+        createdAt: data.project.createdAt,
+        updatedAt: data.project.updatedAt
       });
     });
   }
 
-    render() {
+  render() {
 
-      return (
-        <div>
-        <h1>{this.state.project.title}</h1>
-        <h2>{this.state.project.description}</h2>
-
-        </div>
-      );
-    }
-
+    return (
+      <div>
+        <h1>{this.props.title}</h1>
+        <h2>{this.props.description}</h2>
+      </div>
+    );
+  }
 }
 
-
-export default Project;
+// export default Project;
