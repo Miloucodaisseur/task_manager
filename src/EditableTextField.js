@@ -26,7 +26,7 @@ class EditableTextField extends React.Component {
 
   edit(event){
 
-  	// only if the task is not marked, the text field changes 
+  	// only if the task is not marked, the text field 
   	if (this.props.done == false){
 	  	this.setState({
 	  		editing: true
@@ -35,9 +35,23 @@ class EditableTextField extends React.Component {
   }
 
   render() {
+
+    var input = {
+      margin: 0,
+      padding: 0,
+      width: '250px',
+      borderStyle: 'none',
+      border: 'none',
+      outline: '0',
+      fontSize: '18px',
+      fontFamily: 'helvetica-light',
+      color: '#D11F57',
+      background: 'none'
+    }
+
     if (this.state.editing) {
       return (
-      	<input ref="input" defaultValue={this.props.value} onKeyPress={this.handleKeyPress.bind(this)}/>
+      	<input style={input} ref="input" defaultValue={this.props.value} onKeyPress={this.handleKeyPress.bind(this)}/>
       );
     } else {
       return(

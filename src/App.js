@@ -4,8 +4,17 @@ import ToDoList from './toDoList'
 class App extends React.Component {
 
 	render() {
+		var container = {
+			display: 'flex',
+			justifyContent: 'center',
+			alignItems: 'center',
+			width: '100%',
+			paddingTop: '60px'
+		}
         return (
-          <ToDoList />
+        	<div style={container}>
+          		<ToDoList />
+          	</div>
         );
     }
 }

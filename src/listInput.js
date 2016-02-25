@@ -4,6 +4,9 @@ import jQuery from 'jquery';
 class ListInput extends React.Component {
 	constructor() {
 		super();
+		this.state = {
+			default: "Add a new task here"
+		}
 	}
 
 	onSubmitForm(event) {
@@ -39,14 +42,34 @@ class ListInput extends React.Component {
 	    });
 	}
 
+	setEmptyValue() {
+		this.setState({
+			value: ""
+		})
+	}
+
 	render() {
+
+		var input = {
+			height: '60px',
+			width: '280px',
+			padding: '0px 0px 0px 20px',
+			borderStyle: 'none',
+			border: 'none',
+			outline: '0',
+			fontSize: '18px',
+			fontFamily: 'helvetica-light',
+			color: '#D11F57',
+			backgroundImage: 'url(http://www.tjinauyeung.nl/plus-icon.png)',
+			backgroundSize: 'contain',
+			backgroundRepeat: 'no-repeat',
+			backgroundPosition: 'right'
+		}
+
 		return (
-			<div>
 				<form onSubmit={this.onSubmitForm.bind(this)}>
-					<input ref="newTodoInput" />
-					<button type="submit">Add</button>
+					<input style={input} defaultValue="Add new task" ref="newTodoInput" />
 				</form>
-			</div>
 		);
 	}
 }

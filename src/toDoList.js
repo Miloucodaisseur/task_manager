@@ -27,9 +27,12 @@ class ToDoList extends React.Component {
   	}
 
   	render() {
+        var style = {
+          width: '300px'
+        }
+
         return (
-          	<section>
-              	<h1>To do:</h1>
+          	<section style={style}>
               	<ListInput onChange={this.reloadList.bind(this)} />
 
                 {this.state.tasks.map(function(task, i) {
