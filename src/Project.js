@@ -16,14 +16,30 @@ class Project extends React.Component {
         createdAt: this.props.createdAt,
         updatedAt: this.props.updatedAt
       })
+
+      this.findProject();
     }
+
+    findProject(){
+      let projectId = this.state.id;
+      let component = this;
+
+      jQuery.getJSON("https://afternoon-atoll-31464.herokuapp.com/projects/" + projectId + ".json", function(data) {
+        console.log(data);
+
+      component.setState({
+        project: data.project
+      });
+    });
+  }
 
     render() {
 
       return (
         <div>
-        <h1>{this.state.title}</h1>
-        <h2>{this.state.description}</h2>
+        <h1>{this.state.project.title}</h1>
+        <h2>{this.state.project.description}</h2>
+
         </div>
       );
     }

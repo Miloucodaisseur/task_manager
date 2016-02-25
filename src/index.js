@@ -10,7 +10,7 @@ ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={ProjectList} />
-      <Route path="/project/:id" component={Project}/>
+      <Route path="/project/:projectId" component={Project}/>
       <Route path="*" component={PageNotFound}/>
     </Route>
   </Router>
