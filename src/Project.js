@@ -44,8 +44,8 @@ class Project extends React.Component {
     })
 
     .done(function(data){
-      // Should be a automatic redirect to homepage. Maybe with transitionTo?
-      // browserHistory.push('/');
+      
+      browserHistory.push('/');
     })
 
     .fail(function(error){

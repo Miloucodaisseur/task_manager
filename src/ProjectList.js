@@ -1,6 +1,6 @@
 import React from 'react';
 import jQuery from 'jquery';
-import { Link } from 'react-router';
+import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router';
 import ProjectItem from './ProjectItem';
 import ProjectInput from './ProjectInput';
 
