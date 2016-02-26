@@ -2,6 +2,7 @@ import React from 'react';
 import jQuery from 'jquery';
 import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router';
 import ToDoList from './toDoList';
+import EditableTitle from './EditableTitle';
 
 class Project extends React.Component {
 
@@ -25,7 +26,6 @@ class Project extends React.Component {
       component.setState({
         project: data.project
       });
-      console.log(this.state.project);
     });
   }
 
@@ -44,7 +44,7 @@ class Project extends React.Component {
     })
 
     .done(function(data){
-      
+
       browserHistory.push('/');
     })
 
@@ -53,10 +53,46 @@ class Project extends React.Component {
     })
   }
 
+  changedText(newTitle){
+    let oldState = this.state;
+
+    let changedState = {
+      project: { title: newTitle }
+    }
+
+    let newState = jQuery.extend(oldState, changedState);
+
+    this.setState(newState);
+
+    let projectId = this.props.params.projectId;
+
+    jQuery.ajax({
+        type: "PUT",
+        url: "https://projectapitask.herokuapp.com/projects/" + projectId + ".json",
+        data: JSON.stringify({
+            project: this.state.project
+        }),
+        contentType: "application/json",
+        dataType: "json"
+    })
+
+    .done(function(data) {
+        // something after done
+    })
+
+    .fail(function(error) {
+        console.log(error);
+    });
+  }
+
+
+
   render() {
     return (
       <div>
-          <h1>{this.state.project.title}</h1>
+          <h1>
+            <EditableTitle value={this.state.project.title} onChange={this.changedText.bind(this)} />
+          </h1>
           <p>{this.state.project.description}</p>
           <button onClick={this.destroy.bind(this)}>Delete Project</button>
           <ToDoList projectId={this.props.params.projectId} />
