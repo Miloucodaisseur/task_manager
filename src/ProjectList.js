@@ -36,12 +36,17 @@ class ProjectList extends React.Component {
 
       var header = {
           marginLeft: '10px',
-          fontWeight: '100'
+          fontWeight: '100',
+          color: '#807e71'
+      }
+
+      var current = {
+          color: '#00ADB0',
       }
 
       return (
         <div style={container}>
-            <h1 style={header}>My Dashboard / All projects </h1>
+            <h1 style={header}><Link to="/">My Dashboard</Link> / <span style={current}><Link to="/">All projects</Link></span></h1>
           <ProjectInput onChange={this.reload.bind(this)} />
 
           {this.state.projects.map(function(project, i) {

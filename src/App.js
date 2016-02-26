@@ -44,7 +44,11 @@ class App extends React.Component {
 
         var footer = {
             height: '180px',
-            backgroundColor: 'black'
+            backgroundColor: 'black',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            color: 'white'
         }
 
         return (
@@ -63,9 +67,7 @@ class App extends React.Component {
                     {this.props.children}
                 </div>
                 <footer style={footer}>
-                    <div>
-                        <p>Hello this is a footer</p>
-                    </div>
+                        <h3>Made with love in Amsterdam. 2016</h3>
                 </footer>
             </div>
         );
