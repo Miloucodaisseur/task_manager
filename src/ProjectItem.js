@@ -22,7 +22,7 @@ class ProjectItem extends React.Component {
 
     return (
       <div>
-        {this.state.title}
+        <Link to={`/project/${this.state.id}`}>{this.state.title}</Link>
       </div>
     );
   }

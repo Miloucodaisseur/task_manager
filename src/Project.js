@@ -5,60 +5,50 @@ import { Link } from 'react-router';
 class Project extends React.Component {
   constructor (){
     super();
+
+    this.state = {
+      project: {}
+    };
   }
 
   componentDidMount() {
-    this.setState({
-      key: this.props.id,
-      id: this.props.id,
-      title: this.props.title,
-      description: this.props.description,
-      createdAt: this.props.createdAt,
-      updatedAt: this.props.updatedAt
-    })
-
     this.findProject();
   }
 
   findProject(){
-    let projectId = this.state.id;
+    let projectId = this.props.params.projectId;
     let component = this;
 
     jQuery.getJSON("https://afternoon-atoll-31464.herokuapp.com/projects/" + projectId + ".json", function(data) {
 
       component.setState({
-        key: data.project.id,
-        id: data.project.id,
-        title: data.project.title,
-        description: data.project.description,
-        createdAt: data.project.createdAt,
-        updatedAt: data.project.updatedAt
+        project: data.project
       });
     });
   }
 
-    destroy(event){
-      let component = this;
-      let destroyedProject = this.state.id;
+  destroy(event){
+    let component = this;
+    let destroyedProject = this.state.id;
 
-      jQuery.ajax({
-        type: "DELETE",
-        url: "http://projectapitask.herokuapp.com/projects/" + destroyedProject,
-        data: JSON.stringify({
-          project: destroyedProject   
-        }),
-        contentType: "application/json",
-        dataType: "json"
-      })
+    jQuery.ajax({
+      type: "DELETE",
+      url: "http://projectapitask.herokuapp.com/projects/" + destroyedProject,
+      data: JSON.stringify({
+        project: destroyedProject
+      }),
+      contentType: "application/json",
+      dataType: "json"
+    })
 
-      .done(function(data){
-        component.props.destroyed();
-      })
+    .done(function(data){
+      component.props.destroyed();
+    })
 
-      .fail(function(error){
-        console.log(error);
-      })
-    }
+    .fail(function(error){
+      console.log(error);
+    })
+  }
 
   render() {
 
