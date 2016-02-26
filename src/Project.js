@@ -70,7 +70,7 @@ class Project extends React.Component {
         type: "PUT",
         url: "https://projectapitask.herokuapp.com/projects/" + projectId + ".json",
         data: JSON.stringify({
-            project: this.state.project 
+            project: this.state.project
         }),
         contentType: "application/json",
         dataType: "json"
@@ -90,8 +90,9 @@ class Project extends React.Component {
   render() {
     return (
       <div>
-          <h1>{this.state.project.title}</h1>
-          <EditableTitle value={this.state.project.title} onChange={this.changedText.bind(this)} />
+          <h1>
+            <EditableTitle value={this.state.project.title} onChange={this.changedText.bind(this)} />
+          </h1>
           <p>{this.state.project.description}</p>
           <button onClick={this.destroy.bind(this)}>Delete Project</button>
           <ToDoList projectId={this.props.params.projectId} />
