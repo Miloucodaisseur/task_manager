@@ -11,6 +11,7 @@ class ListItem extends React.Component {
 		this.setState({
 			key: this.props.id,
 			id: this.props.id,
+			projectId: this.props.projectId,
 			description: this.props.description,
 			done: this.props.done,
 			createdAt: this.props.createdAt,
@@ -26,7 +27,7 @@ class ListItem extends React.Component {
 
 	    jQuery.ajax({
 	      	type: "DELETE",
-	      	url: "https://projectapitask.herokuapp.com/projects/" + this.props.projectId + "/tasks/" + this.props.id,
+	      	url: "https://projectapitask.herokuapp.com/projects/" + this.props.projectId + "/tasks/" + this.state.id,
 	      	data: JSON.stringify({
 	          	task: deleteTask
 	      	}),
@@ -72,7 +73,7 @@ class ListItem extends React.Component {
 
 	    jQuery.ajax({
 	      	type: "PUT",
-	      	url: "https://projectapitask.herokuapp.com/projects/${this.props.projectId}/tasks/${this.props.id}",
+	      	url: "https://projectapitask.herokuapp.com/projects/" + this.props.projectId + "/tasks/" + this.state.id,
 	      	data: JSON.stringify({
 	          	task: newState
 	      	}),
@@ -115,7 +116,7 @@ class ListItem extends React.Component {
 
 	    jQuery.ajax({
 	      	type: "PUT",
-	      	url: "https://projectapitask.herokuapp.com/projects/${this.props.projectId}/tasks/${this.props.id}",
+	      	url: "https://projectapitask.herokuapp.com/projects/"+ this.props.projectId + "/tasks/" + this.state.id,
 	      	data: JSON.stringify({
 	          	task: newState
 	      	}),

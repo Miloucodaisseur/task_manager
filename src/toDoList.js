@@ -34,12 +34,11 @@ class ToDoList extends React.Component {
           	<section>
               	<h1>To do:</h1>
                   <ListInput onChange={this.reloadList.bind(this)} projectId={this.props.projectId} />
-                  <button onClick={this.reloadList.bind(this)}>Testing</button>
                   {this.state.tasks.map(function(task, i) {
                       return(
-                         <ListItem description={task.description}/>
+                          <ListItem projectId={this.props.projectId} key={task.id} id={task.id} description={task.description} done={task.done} destroy={this.reloadList.bind(this)} complete={this.reloadList.bind(this)} />
                       );
-                  })}
+                  }, this)}
 
             </section>
         );
