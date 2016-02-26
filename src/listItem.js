@@ -136,16 +136,64 @@ class ListItem extends React.Component {
 
 	render() {
 
-		var complete = { textDecoration: 'line-Through' };
+		var row = { 
+			borderTop: '2.5px solid #d5d1b4',
+			backgroundColor: '#f7f6f0',
+			height: '90px',
+			paddingLeft: '20px'
+		}
+
+		var task = {
+			width: '100%',
+			margin: '0px',
+		}
+
+		var list = {
+			listStyleType: "none",	
+			paddingLeft: '0px',
+			margin:	'0px'
+		}
+
+		var mark = {
+			width: '90px',
+			fontFamily: 'helvetica-light',
+			textTransform: 'uppercase',
+			fontSize: '8px',
+			color: 'white',
+			padding: '5px',
+			border: 'none',
+			backgroundColor: '#00ADB0',
+			borderRadius: '3px',
+			outline: '0',
+			letterSpacing: '1px'
+		}
+
+		var del = {
+			width: '90px',
+			fontFamily: 'helvetica-light',
+			fontSize: '8px',
+			textTransform: 'uppercase',
+			color: 'white',
+			padding: '5px',
+			border: 'none',
+			backgroundColor: '#D11F57',
+			borderRadius: '3px',
+			letterSpacing: '1px',
+			outline: '0'
+		}
+
+		var complete = { textDecoration: 'line-Through', color: 'grey'};
  		var not_complete = { textDecoration: 'none'};
 
 		return (
-			<div>
-				<p style={this.state.done ? complete : not_complete}>
-					<EditableTextField value={this.state.description} done={this.state.done} onChange={this.changedText.bind(this)} />
-				</p>
-				<button onClick={this.destroy.bind(this)}>Delete</button>
-				<button onClick={this.complete.bind(this)}>Mark as complete</button>
+			<div style={row}>
+				<div style={task}>
+					<p style={this.state.done ? complete : not_complete}>
+						<EditableTextField value={this.state.description} done={this.state.done} onChange={this.changedText.bind(this)} />
+					</p>
+					<button style={mark} onClick={this.complete.bind(this)}>Complete</button>
+					<button style={del} onClick={this.destroy.bind(this)}>Delete</button>
+				</div>
 			</div>
 		);
 	}

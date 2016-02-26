@@ -28,9 +28,20 @@ class ProjectList extends React.Component {
     }
 
     render() {
+
+      var container = {
+        width: '1200px',
+        margin: 'auto'
+      }
+
+      var header = {
+          marginLeft: '10px',
+          fontWeight: '100'
+      }
+
       return (
-        <div>
-          <h1>Project List</h1>
+        <div style={container}>
+            <h1 style={header}>My Dashboard / All projects </h1>
           <ProjectInput onChange={this.reload.bind(this)} />
 
           {this.state.projects.map(function(project, i) {
