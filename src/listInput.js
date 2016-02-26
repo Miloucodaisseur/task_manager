@@ -6,11 +6,18 @@ class ListInput extends React.Component {
 		super();
 	}
 
+	componentDidMount() {
+		this.setState({
+			projectId: this.props.projectId,
+		})
+	}
+
 	onSubmitForm(event) {
 	    event.preventDefault();
 
 	    let component = this;
 	    let description = this.refs.newTodoInput.value;
+		let projectId = this.props.projectId;
 	    let newTask = {
 	     	id: null,
 	      	description: description,
@@ -21,14 +28,14 @@ class ListInput extends React.Component {
 
 	    jQuery.ajax({
 	      	type: "POST",
-	      	url: "https://apitask.herokuapp.com/tasks.json",
+	      	url: "https://projectapitask.herokuapp.com/projects/" + projectId + "/tasks.json",
 	      	data: JSON.stringify({
 	          	task: newTask
 	      	}),
 	      	contentType: "application/json",
 	      	dataType: "json"
 	    })
-	    
+
 	    .done(function(data) {
 	        component.props.onChange();
 	        component.refs.newTodoInput.value = "";
