@@ -20,10 +20,22 @@ class ProjectItem extends React.Component {
 
   render() {
 
+    var style = {
+      width: '31%',
+      backgroundColor: '#f7f6f0',
+      margin: '5px',
+      display: 'inline-block',
+      verticalAlign: 'top',
+      padding: '20px'
+    }
+
     return (
-      <div>
-        <Link to={`/project/${this.state.id}`}>{this.state.title}</Link>
-      </div>
+      <Link to={`/project/${this.state.id}`}>
+        <div style={style}>
+          <h2>{this.state.title}</h2>
+          <p>{this.state.description}</p>
+        </div>
+      </Link>
     );
   }
 }

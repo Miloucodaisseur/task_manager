@@ -32,7 +32,6 @@ class ToDoList extends React.Component {
   	render() {
         return (
           	<section>
-              	<h1>To do:</h1>
                   <ListInput onChange={this.reloadList.bind(this)} projectId={this.props.projectId} />
                   {this.state.tasks.map(function(task, i) {
                       return(

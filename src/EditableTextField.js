@@ -31,9 +31,23 @@ class EditableTextField extends React.Component {
   }
 
   render() {
+
+    var input = {
+      margin: 0,
+      padding: 0,
+      width: '100%',
+      borderStyle: 'none',
+      border: 'none',
+      outline: '0',
+      fontSize: '16px',
+      fontFamily: 'helvetica-light',
+      color: '#D11F57',
+      background: 'none'
+    }
+
     if (this.state.editing) {
       return (
-      	<input ref="input" defaultValue={this.props.value} onKeyPress={this.handleKeyPress.bind(this)}/>
+        <input style={input} ref="input" placeholder={this.props.value} onKeyPress={this.handleKeyPress.bind(this)}/>
       );
     } else {
       return(
@@ -42,5 +56,4 @@ class EditableTextField extends React.Component {
     }
   }
 }
-
 export default EditableTextField;

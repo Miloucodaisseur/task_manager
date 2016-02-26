@@ -47,11 +47,27 @@ class ListInput extends React.Component {
 	}
 
 	render() {
+
+	    var input = {
+	      height: '60px',
+	      width: '100%',
+	      padding: '0px 0px 0px 20px',
+	      borderStyle: 'none',
+	      border: 'none',
+	      outline: '0',
+	      fontSize: '18px',
+	      fontFamily: 'helvetica-light',
+	      color: '#D11F57',
+	      backgroundImage: 'url(http://www.tjinauyeung.nl/plus-icon.png)',
+	      backgroundSize: 'contain',
+	      backgroundRepeat: 'no-repeat',
+	      backgroundPosition: 'right'
+	    }
+
 		return (
 			<div>
 				<form onSubmit={this.onSubmitForm.bind(this)}>
-					<input ref="newTodoInput" />
-					<button type="submit">Add</button>
+					<input style={input} placeholder="Add a new task" ref="newTodoInput" />
 				</form>
 			</div>
 		);

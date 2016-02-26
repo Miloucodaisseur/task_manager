@@ -7,16 +7,15 @@ class App extends React.Component {
 
         var navigation = {
             height: '60px',
-            backgroundColor: 'black',
+            backgroundColor: '#00ADB0',
             paddingTop: '8px',
             paddingBottom: '10px',
             paddingLeft: '20px'
         };
 
         var navcontainer = {
-            maxWidth: '1400px',
-            margin: 'auto',
-            paddingLeft: '10px'
+            maxWidth: '1200px',
+            margin: 'auto'
         }
 
         var navlist = {
@@ -30,27 +29,22 @@ class App extends React.Component {
         var li = {
             display: 'inline-block',
             marginRight: '15px',
-            backgroundColor: '#fff',
-            borderRadius: '10px',
-            width: '100px',
-            paddingLeft: '10px',
             paddingTop: '5px',
             paddingBottom: '5px',
-            paddingRight: '10px'
+            paddingRight: '10px',
+            paddingLeft: '10px',
+            fontSize: '12px',
+            color: 'white'
         };
 
-        var logo = {
-            display: 'inline-block',
-            marginRight: '15px',
-            borderRadius: '10px',
-            color: 'white',
-            paddingTop: '5px',
-            paddingBottom: '5px',
-            fontSize: '12px'
+        var content = {
+            padding: '20px',
+            minHeight: '90vh'
         }
 
-        var content = {
-            padding: '20px'
+        var footer = {
+            height: '180px',
+            backgroundColor: 'black'
         }
 
         return (
@@ -58,7 +52,7 @@ class App extends React.Component {
                 <nav style={navigation}>
                     <div style={navcontainer}>
                         <ul style={navlist}>
-                            <li style={logo}>Project Manager</li>
+                            <li style={li}>Project Manager</li>
                             <li style={li}><Link to="/">Home</Link></li>
                             <li style={li}><Link to="/">About</Link></li>
                             <li style={li}><Link to="/">Contact</Link></li>
@@ -68,6 +62,11 @@ class App extends React.Component {
                 <div style={content}>
                     {this.props.children}
                 </div>
+                <footer style={footer}>
+                    <div>
+                        <p>Hello this is a footer</p>
+                    </div>
+                </footer>
             </div>
         );
     }
