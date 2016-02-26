@@ -26,17 +26,26 @@ class ProjectList extends React.Component {
     }
 
     render() {
+
+      var container = {
+        width: '1400px',
+        margin: 'auto'
+      }
+
       return (
-        <div>
-          <h1>Project List</h1>
-          <ProjectInput onChange={this.reload.bind(this)} />
-          
-          {this.state.projects.map(function(project, i) {
-            return(
-              <Project key={project.id} id={project.id} title={project.title} description={project.description} destroyed={this.reload.bind(this)} />
-            );
-          },this)}
-        </div>
+              <div style={container}>
+                <h1>Project List</h1>
+                <ProjectInput onChange={this.reload.bind(this)} />
+         
+
+                {this.state.projects.map(function(project, i) {
+
+                  return( 
+                          <Project key={project.id} id={project.id} title={project.title} 
+                          description={project.description} destroyed={this.reload.bind(this)} />
+                         );
+                },this)}
+              </div>
       );
     }
   }

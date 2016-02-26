@@ -42,9 +42,20 @@ class Project extends React.Component {
 
     render() {
 
+        var style = {
+            width: '31%',
+            padding: '20px',
+            backgroundColor: '#f7f6f0',
+            display: 'inline-block',
+            verticalAlign: 'top',
+            margin: '20px 10px 0px 10px',
+            color: 'black'
+        }
+
       return (
-        <div>
-          {this.state.title}
+        <div style={style}>
+          <h2>{this.state.title}</h2>
+          <p>{this.state.description}</p>
           <button onClick={this.destroy.bind(this)}>Delete Project</button>
         </div>
       );
