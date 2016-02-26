@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router';
-// import ProjectList from './ProjectList';
-
 
 class App extends React.Component {
 
 	render() {
+<<<<<<< HEAD
 
         var navigation = {
             height: '60px',
@@ -71,6 +70,32 @@ class App extends React.Component {
                     {this.props.children}
                 </div>
             </div>
+||||||| merged common ancestors
+        return (
+					<div className="container">
+          
+            <nav className="main">
+              <ul>
+                <li><Link to="/">Home</Link></li>
+              </ul>
+            </nav>
+
+
+            {this.props.children}
+          </div>
+=======
+        return (
+					<div className="container">
+
+            <nav className="main">
+              <ul>
+                <li><Link to="/">Home</Link></li>
+              </ul>
+            </nav>
+						
+            {this.props.children}
+          </div>
+>>>>>>> df910b732eb2943e4a6d90a922c4527cf18e6791
         );
     }
 }

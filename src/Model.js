@@ -3,27 +3,27 @@ import jQuery from 'jquery';
 class Local {
 	constructor(){
 		this.tasks = [
-		{ 
+		{
 			id: 1,
 			description: "Hello",
 			done: true
 		},{
-			
+
 			id: 2,
-			description: "Hello again!",	
+			description: "Hello again!",
 			done: false
 		},{
-			
+
 			id: 3,
-			description: "Hello again!",	
+			description: "Hello again!",
 			done: false
 		},{
-			
+
 			id: 4,
-			description: "Hello again 4!",	
+			description: "Hello again 4!",
 			done: false
 
-			}];	
+			}];
 	}
 
 	get(onDone) {
@@ -43,9 +43,9 @@ class Local {
 class Remote {
 
 	constructor() {
-		this.server = "https://apitask.herokuapp.com/";
+		this.server = "https://projectapitask.herokuapp.com/";
 	}
-	    
+
 	get(onDone){
 		jQuery.getJSON( this.server + "tasks.json", onDone);
 	}
@@ -60,7 +60,7 @@ class Remote {
 	      	data: data,
 	      	contentType: "application/json",
 	      	dataType: "json"
-	    }; 
+	    };
 
 	    jQuery.ajax( request ).done(onDone).fail(onFail);
 	}
@@ -71,7 +71,7 @@ class Remote {
 
 		let request = {
 	      	type: "DELETE",
-	      	url: this.server + "tasks/" + task.id, 
+	      	url: this.server + "tasks/" + task.id,
 	      	data: data,
 	      	contentType: "application/json",
 	      	dataType: "json"
@@ -81,7 +81,7 @@ class Remote {
 	}
 
 	update(task, onDone, onFail) {
-			
+
 		var data = JSON.stringify({task: task});
 
 		let request = {

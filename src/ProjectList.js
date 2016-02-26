@@ -1,12 +1,14 @@
 import React from 'react';
 import jQuery from 'jquery';
-import Project from './Project';
+import { Link } from 'react-router';
+import ProjectItem from './ProjectItem';
 import ProjectInput from './ProjectInput';
 
 class ProjectList extends React.Component {
 
     constructor(){
       super();
+
       this.state = {
         projects: []
       };
@@ -33,6 +35,7 @@ class ProjectList extends React.Component {
       }
 
       return (
+<<<<<<< HEAD
               <div style={container}>
                 <h1>Project List</h1>
                 <ProjectInput onChange={this.reload.bind(this)} />
@@ -46,6 +49,30 @@ class ProjectList extends React.Component {
                          );
                 },this)}
               </div>
+||||||| merged common ancestors
+        <div>
+          <h1>Project List</h1>
+          <ProjectInput onChange={this.reload.bind(this)} />
+          
+          {this.state.projects.map(function(project, i) {
+            return(
+              <Project key={project.id} id={project.id} title={project.title} description={project.description} destroyed={this.reload.bind(this)} />
+            );
+          },this)}
+        </div>
+=======
+        <div>
+          <h1>Project List</h1>
+          <ProjectInput onChange={this.reload.bind(this)} />
+
+          {this.state.projects.map(function(project, i) {
+            return(
+                <ProjectItem key={project.id} id={project.id} title={project.title}
+                description={project.description} />
+            );
+          })}
+        </div>
+>>>>>>> df910b732eb2943e4a6d90a922c4527cf18e6791
       );
     }
   }
