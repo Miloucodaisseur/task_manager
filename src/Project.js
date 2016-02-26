@@ -1,10 +1,11 @@
 import React from 'react';
 import jQuery from 'jquery';
-import { Link } from 'react-router';
+import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router';
 
 class Project extends React.Component {
-  constructor (){
-    super();
+
+  constructor() {
+        super();
 
     this.state = {
       project: {}
@@ -19,7 +20,7 @@ class Project extends React.Component {
     let projectId = this.props.params.projectId;
     let component = this;
 
-    jQuery.getJSON("https://afternoon-atoll-31464.herokuapp.com/projects/" + projectId + ".json", function(data) {
+    jQuery.getJSON("https://projectapitask.herokuapp.com/projects/" + projectId + ".json", function(data) {
 
       component.setState({
         project: data.project
@@ -29,7 +30,7 @@ class Project extends React.Component {
 
   destroy(event){
     let component = this;
-    let destroyedProject = this.state.id;
+    let destroyedProject = this.state.project.id;
 
     jQuery.ajax({
       type: "DELETE",
@@ -42,7 +43,7 @@ class Project extends React.Component {
     })
 
     .done(function(data){
-      component.props.destroyed();
+      // Should be a automatic redirect to homepage. Maybe with transitionTo?
     })
 
     .fail(function(error){
@@ -51,15 +52,15 @@ class Project extends React.Component {
   }
 
   render() {
-
     return (
       <div>
-          {this.state.title}
+          <h1>{this.state.project.title}</h1>
+          <p>{this.state.project.description}</p>
           <button onClick={this.destroy.bind(this)}>Delete Project</button>
+          <toDoList projectId={this.props.params.projectId} />
       </div>
     );
   }
 }
-
 
 export default Project;

@@ -11,6 +11,7 @@ class ListInput extends React.Component {
 
 	    let component = this;
 	    let description = this.refs.newTodoInput.value;
+			let projectId = this.props.projectId;
 	    let newTask = {
 	     	id: null,
 	      	description: description,
@@ -21,7 +22,7 @@ class ListInput extends React.Component {
 
 	    jQuery.ajax({
 	      	type: "POST",
-	      	url: "https://apitask.herokuapp.com/tasks.json",
+	      	url: "https://apitask.herokuapp.com/projects/${projectId}/tasks.json",
 	      	data: JSON.stringify({
 	          	task: newTask
 	      	}),

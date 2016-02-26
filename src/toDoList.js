@@ -15,11 +15,13 @@ class ToDoList extends React.Component {
 
     reloadList(event) {
         let component = this;
-        jQuery.getJSON("https://apitask.herokuapp.com/tasks.json", function(data){
+        let projectId = this.props.projectId;
+
+        jQuery.getJSON("https://apitask.herokuapp.com/tasks.json/${projectId}/tasks", function(data){
             component.setState({
                 tasks: data.tasks
             });
-        }); 
+        });
     }
 
     componentDidMount() {
@@ -30,11 +32,13 @@ class ToDoList extends React.Component {
         return (
           	<section>
               	<h1>To do:</h1>
-              	<ListInput onChange={this.reloadList.bind(this)} />
+              	<ListInput onChange={this.reloadList.bind(this) projectId={this.props.projectId}} />
 
                 {this.state.tasks.map(function(task, i) {
                     return(
-                        <ListItem key={task.id} id={task.id} description={task.description} done={task.done} destroy={this.reloadList.bind(this)} complete={this.reloadList.bind(this)} />
+                        <ListItem key={task.id} id={task.id} description={task.description}
+                        done={task.done} projectId={todo.project_id}
+                        destroy={this.reloadList.bind(this)} complete={this.reloadList.bind(this)} />
                     );
                 }, this)}
             </section>
