@@ -170,6 +170,7 @@ class ListItem extends React.Component {
 
 		var del = {
 			width: '90px',
+			marginLeft: '440px',
 			fontFamily: 'helvetica-light',
 			fontSize: '8px',
 			textTransform: 'uppercase',

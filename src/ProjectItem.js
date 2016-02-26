@@ -29,11 +29,30 @@ class ProjectItem extends React.Component {
       padding: '20px'
     }
 
+    var user = {
+        width: '50px',
+        height: '50px',
+        marginRight: '20px',
+        marginBottom: '20px',
+        borderRadius: '50%',
+        display: 'inline-block'
+    }
+
+    var adduser = {
+        fontWeight: '100',
+        color: 'lightgrey',
+        marginTop: '20px'
+    }
+
+
     return (
       <Link to={`/project/${this.state.id}`}>
         <div style={style}>
           <h2>{this.state.title}</h2>
           <p>{this.state.description}</p>
+            <h2 style={adduser}>Members:</h2>
+            <img style={user} src="https://qph.is.quoracdn.net/main-qimg-498de3782ec00063441d03e10b7548c4?convert_to_webp=true" />
+            <img style={user} src="https://qph.is.quoracdn.net/main-qimg-498de3782ec00063441d03e10b7548c4?convert_to_webp=true" />
         </div>
       </Link>
     );

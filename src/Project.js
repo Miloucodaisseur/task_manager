@@ -110,6 +110,7 @@ class Project extends React.Component {
     }
     var del = {
         width: '140px',
+        marginLeft: '20px',
         height: '30px',
         fontFamily: 'helvetica-light',
         fontSize: '12px',
@@ -123,9 +124,25 @@ class Project extends React.Component {
         outline: '0'
     }
 
+    var edit = {
+        width: '140px',
+        height: '30px',
+        fontFamily: 'helvetica-light',
+        fontSize: '12px',
+        textTransform: 'uppercase',
+        color: 'white',
+        padding: '5px',
+        border: 'none',
+        backgroundColor: '#00ADB0',
+        borderRadius: '3px',
+        letterSpacing: '1px',
+        outline: '0'
+    }
+
     var header = {
         marginLeft: '10px',
-        fontWeight: '100'
+        fontWeight: '100',
+        color: '#807e71'
     }
 
     var user = {
@@ -143,9 +160,13 @@ class Project extends React.Component {
         marginTop: '20px'
     }
 
+    var current = {
+        color: '#00ADB0'
+    }
+
     return (
       <div style={container}>
-          <h1 style={header}>My Dashboard / All projects / {this.state.project.title} </h1>
+          <h1 style={header}><Link to="/">My Dashboard</Link> / <Link to="/">All projects</Link> / <span style={current}>{this.state.project.title} </span></h1>
 
           <div style={style}>
               <h2><EditableTitle value={this.state.project.title} onChange={this.changedText.bind(this)} /></h2>
@@ -154,8 +175,10 @@ class Project extends React.Component {
               <h2 style={adduser}>Members:</h2>
               <img style={user} src="https://qph.is.quoracdn.net/main-qimg-498de3782ec00063441d03e10b7548c4?convert_to_webp=true" />
               <img style={user} src="https://qph.is.quoracdn.net/main-qimg-498de3782ec00063441d03e10b7548c4?convert_to_webp=true" />
+
               <img style={user} src="http://www.tjinauyeung.nl/adduser.jpg"  />
 
+              <button style={edit} onClick={this.destroy.bind(this)}>Edit Project</button>
               <button style={del} onClick={this.destroy.bind(this)}>Delete Project</button>
           </div>
 

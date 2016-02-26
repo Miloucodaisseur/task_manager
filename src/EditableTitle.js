@@ -27,10 +27,24 @@ class EditableTitle extends React.Component {
   }
 
   render() {
+
+    var input = {
+      margin: 0,
+      padding: 0,
+      width: '100%',
+      borderStyle: 'none',
+      border: 'none',
+      outline: '0',
+      fontSize: '24px',
+      fontFamily: 'helvetica-light',
+      color: '#D11F57',
+      background: 'none'
+    }
+
     if (this.state.editing) {
       return (
         <div>
-          <input ref="input" defaultValue={this.props.value} onKeyPress={this.handleKeyPress.bind(this)} />
+          <input style={input} ref="input" defaultValue={this.props.value} onKeyPress={this.handleKeyPress.bind(this)} />
         </div>
       );
     } else {
