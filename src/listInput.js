@@ -22,7 +22,7 @@ class ListInput extends React.Component {
 
 	    jQuery.ajax({
 	      	type: "POST",
-	      	url: "https://apitask.herokuapp.com/projects/${projectId}/tasks.json",
+	      	url: "https://projectapitask.herokuapp.com/projects/${projectId}/tasks.json",
 	      	data: JSON.stringify({
 	          	task: newTask
 	      	}),

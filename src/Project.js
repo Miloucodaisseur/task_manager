@@ -1,11 +1,12 @@
 import React from 'react';
 import jQuery from 'jquery';
 import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router';
+import ToDoList from './toDoList';
 
 class Project extends React.Component {
 
   constructor() {
-        super();
+    super();
 
     this.state = {
       project: {}
@@ -21,10 +22,10 @@ class Project extends React.Component {
     let component = this;
 
     jQuery.getJSON("https://projectapitask.herokuapp.com/projects/" + projectId + ".json", function(data) {
-
       component.setState({
         project: data.project
       });
+      console.log(this.state.project);
     });
   }
 
@@ -44,6 +45,7 @@ class Project extends React.Component {
 
     .done(function(data){
       // Should be a automatic redirect to homepage. Maybe with transitionTo?
+      // browserHistory.push('/');
     })
 
     .fail(function(error){
@@ -57,7 +59,7 @@ class Project extends React.Component {
           <h1>{this.state.project.title}</h1>
           <p>{this.state.project.description}</p>
           <button onClick={this.destroy.bind(this)}>Delete Project</button>
-          <toDoList projectId={this.props.params.projectId} />
+          <ToDoList projectId={this.props.params.projectId} />
       </div>
     );
   }
