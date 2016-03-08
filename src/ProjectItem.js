@@ -21,7 +21,7 @@ class ProjectItem extends React.Component {
   render() {
 
     var style = {
-      width: '31%',
+      width: '300px',
       backgroundColor: '#f7f6f0',
       margin: '5px',
       display: 'inline-block',

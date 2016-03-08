@@ -44,7 +44,7 @@ class ProjectInput extends React.Component {
   render() {
 
     var style = {
-      width: '31%',
+      width: '300px',
       backgroundColor: '#fff',
       margin: '5px',
       display: 'inline-block',
@@ -111,8 +111,8 @@ class ProjectInput extends React.Component {
     return (
       <div style={style}>
         <form onSubmit={this.onSubmitForm.bind(this)}>
-            <input style={input} ref="newProjectTitle" placeholder="Add a new project"/>
-            <textarea style={textarea} rows="5" placeholder="Add your project description here. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis doloremque ad harum numquam dicta voluptatibus voluptates quidem quisquam, nam voluptatum deserunt possimus? Expedita quasi sequi error incidunt molestiae pariatur quod?"  ref="newProjectDescription"/>
+            <input style={input} ref="newProjectTitle" placeholder="Add a project title"/>
+            <textarea style={textarea} rows="5" placeholder="Add a project description here."  ref="newProjectDescription"/>
             
             <h2 style={adduser}>Members:</h2>
             <img style={user} src="https://qph.is.quoracdn.net/main-qimg-498de3782ec00063441d03e10b7548c4?convert_to_webp=true" />

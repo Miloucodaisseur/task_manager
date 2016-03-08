@@ -30,7 +30,7 @@ class ProjectList extends React.Component {
     render() {
 
       var container = {
-        width: '1200px',
+        maxWidth: '950px',
         margin: 'auto'
       }
 

@@ -165,12 +165,14 @@ class ListItem extends React.Component {
 			backgroundColor: '#00ADB0',
 			borderRadius: '3px',
 			outline: '0',
+			display: 'inline-block',
 			letterSpacing: '1px'
 		}
 
 		var del = {
 			width: '90px',
-			marginLeft: '440px',
+			display: 'inline-block',
+			marginLeft: '80px',
 			fontFamily: 'helvetica-light',
 			fontSize: '8px',
 			textTransform: 'uppercase',

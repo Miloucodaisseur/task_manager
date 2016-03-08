@@ -7,186 +7,167 @@ import EditableTitle from './EditableTitle';
 class Project extends React.Component {
 
   constructor() {
-    super();
+	super();
 
-    this.state = {
-      project: {}
-    };
+	this.state = {
+	  project: {}
+	};
   }
 
   componentDidMount() {
-    this.findProject();
+	this.findProject();
   }
 
   findProject(){
-    let projectId = this.props.params.projectId;
-    let component = this;
+	let projectId = this.props.params.projectId;
+	let component = this;
 
-    jQuery.getJSON("https://projectapitask.herokuapp.com/projects/" + projectId + ".json", function(data) {
-      component.setState({
-        project: data.project
-      });
-    });
+	jQuery.getJSON("https://projectapitask.herokuapp.com/projects/" + projectId + ".json", function(data) {
+	  component.setState({
+		project: data.project
+	  });
+	});
   }
 
   destroy(event){
-    let component = this;
-    let destroyedProject = this.state.project.id;
+	let component = this;
+	let destroyedProject = this.state.project.id;
 
-    jQuery.ajax({
-      type: "DELETE",
-      url: "http://projectapitask.herokuapp.com/projects/" + destroyedProject,
-      data: JSON.stringify({
-        project: destroyedProject
-      }),
-      contentType: "application/json",
-      dataType: "json"
-    })
+	jQuery.ajax({
+	  type: "DELETE",
+	  url: "http://projectapitask.herokuapp.com/projects/" + destroyedProject,
+	  data: JSON.stringify({
+		project: destroyedProject
+	  }),
+	  contentType: "application/json",
+	  dataType: "json"
+	})
 
-    .done(function(data){
+	.done(function(data){
 
-      browserHistory.push('/');
-    })
+	  browserHistory.push('/');
+	})
 
-    .fail(function(error){
-      console.log(error);
-    })
+	.fail(function(error){
+	  console.log(error);
+	})
   }
 
   changedText(newTitle){
-    let oldState = this.state;
+	let oldState = this.state;
 
-    let changedState = {
-      project: { title: newTitle }
-    }
+	let changedState = {
+	  project: { title: newTitle }
+	}
 
-    let newState = jQuery.extend(oldState, changedState);
+	let newState = jQuery.extend(oldState, changedState);
 
-    this.setState(newState);
+	this.setState(newState);
 
-    let projectId = this.props.params.projectId;
+	let projectId = this.props.params.projectId;
 
-    jQuery.ajax({
-        type: "PUT",
-        url: "https://projectapitask.herokuapp.com/projects/" + projectId + ".json",
-        data: JSON.stringify({
-            project: this.state.project
-        }),
-        contentType: "application/json",
-        dataType: "json"
-    })
+	jQuery.ajax({
+		type: "PUT",
+		url: "https://projectapitask.herokuapp.com/projects/" + projectId + ".json",
+		data: JSON.stringify({
+			project: this.state.project
+		}),
+		contentType: "application/json",
+		dataType: "json"
+	})
 
-    .done(function(data) {
-        // something after done
-    })
+	.done(function(data) {
+		// something after done
+	})
 
-    .fail(function(error) {
-        console.log(error);
-    });
+	.fail(function(error) {
+		console.log(error);
+	});
   }
 
 
 
   render() {
-    var style = {
-      width: '31%',
-      padding: '20px',
-      backgroundColor: 'white',
-      display: 'inline-block',
-      verticalAlign: 'top',
-      margin: '5px',
-    }
+	var style = {
+	  width: '300px',
+	  padding: '20px',
+	  backgroundColor: 'white',
+	  display: 'inline-block',
+	  verticalAlign: 'top',
+	  margin: '5px',
+	}
 
-    var todo = {
-      display: 'inline-block',
-      verticalAlign: 'top',
-      margin: '5px',
-      width: '55%',
-    }
+	var todo = {
+	  display: 'inline-block',
+	  verticalAlign: 'top',
+	  margin: '5px',
+	  width: '300px'
+	}
 
-    var container = {
-        width: '1200px',
-        margin: 'auto'
-    }
-    var del = {
-        width: '140px',
-        marginLeft: '20px',
-        height: '30px',
-        fontFamily: 'helvetica-light',
-        fontSize: '12px',
-        textTransform: 'uppercase',
-        color: 'white',
-        padding: '5px',
-        border: 'none',
-        backgroundColor: '#D11F57',
-        borderRadius: '3px',
-        letterSpacing: '1px',
-        outline: '0'
-    }
+	var container = {
+		maxWidth: '950px',
+		margin: 'auto'
+	}
+	var del = {
+		width: '140px',
+		height: '30px',
+		fontFamily: 'helvetica-light',
+		fontSize: '12px',
+		textTransform: 'uppercase',
+		color: 'white',
+		padding: '5px',
+		border: 'none',
+		backgroundColor: '#D11F57',
+		borderRadius: '3px',
+		letterSpacing: '1px',
+		outline: '0'
+	}
 
-    var edit = {
-        width: '140px',
-        height: '30px',
-        fontFamily: 'helvetica-light',
-        fontSize: '12px',
-        textTransform: 'uppercase',
-        color: 'white',
-        padding: '5px',
-        border: 'none',
-        backgroundColor: '#00ADB0',
-        borderRadius: '3px',
-        letterSpacing: '1px',
-        outline: '0'
-    }
+	var header = {
+		marginLeft: '10px',
+		fontWeight: '100',
+		color: '#807e71'
+	}
 
-    var header = {
-        marginLeft: '10px',
-        fontWeight: '100',
-        color: '#807e71'
-    }
+	var user = {
+		width: '50px',
+		height: '50px',
+		marginRight: '20px',
+		marginBottom: '20px',
+		borderRadius: '50%',
+		display: 'inline-block'
+	}
 
-    var user = {
-        width: '50px',
-        height: '50px',
-        marginRight: '20px',
-        marginBottom: '20px',
-        borderRadius: '50%',
-        display: 'inline-block'
-    }
+	var adduser = {
+		fontWeight: '100',
+		color: 'lightgrey',
+		marginTop: '20px'
+	}
 
-    var adduser = {
-        fontWeight: '100',
-        color: 'lightgrey',
-        marginTop: '20px'
-    }
+	var current = {
+		color: '#00ADB0'
+	}
 
-    var current = {
-        color: '#00ADB0'
-    }
+	return (
+	  <div style={container}>
+		  <h1 style={header}><Link to="/">My Dashboard</Link> / <Link to="/">All projects</Link> / <span style={current}>{this.state.project.title} </span></h1>
 
-    return (
-      <div style={container}>
-          <h1 style={header}><Link to="/">My Dashboard</Link> / <Link to="/">All projects</Link> / <span style={current}>{this.state.project.title} </span></h1>
+		  <div style={style}>
+			  <h2><EditableTitle value={this.state.project.title} onChange={this.changedText.bind(this)} /></h2>
+			  <p>{this.state.project.description}</p>
 
-          <div style={style}>
-              <h2><EditableTitle value={this.state.project.title} onChange={this.changedText.bind(this)} /></h2>
-              <p>{this.state.project.description}</p>
+			  <h2 style={adduser}>Members:</h2>
+			  <img style={user} src="https://qph.is.quoracdn.net/main-qimg-498de3782ec00063441d03e10b7548c4?convert_to_webp=true" />
+			  <img style={user} src="https://qph.is.quoracdn.net/main-qimg-498de3782ec00063441d03e10b7548c4?convert_to_webp=true" />
+			  <img style={user} src="http://www.tjinauyeung.nl/adduser.jpg"  />
+			  <button style={del} onClick={this.destroy.bind(this)}>Delete Project</button>
+		  </div>
 
-              <h2 style={adduser}>Members:</h2>
-              <img style={user} src="https://qph.is.quoracdn.net/main-qimg-498de3782ec00063441d03e10b7548c4?convert_to_webp=true" />
-              <img style={user} src="https://qph.is.quoracdn.net/main-qimg-498de3782ec00063441d03e10b7548c4?convert_to_webp=true" />
-
-              <img style={user} src="http://www.tjinauyeung.nl/adduser.jpg"  />
-
-              <button style={edit} onClick={this.destroy.bind(this)}>Edit Project</button>
-              <button style={del} onClick={this.destroy.bind(this)}>Delete Project</button>
-          </div>
-
-          <div style={todo}>
-              <ToDoList projectId={this.props.params.projectId} />
-          </div>
-      </div>
-    );
+		  <div style={todo}>
+			  <ToDoList projectId={this.props.params.projectId} />
+		  </div>
+	  </div>
+	);
   }
 }
 
